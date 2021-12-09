@@ -1,6 +1,5 @@
 from flask import Flask , render_template
 from flask import request, redirect, url_for
-import linebot
 
 app = Flask(__name__) #代表目前執行的模組
 
