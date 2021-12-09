@@ -51,3 +51,4 @@ if __name__=="__main__": #如果以主程式執行
 #Procfile 裡面的web gunicorn app(檔名):app(第2行的變數)
 #如果修改程式(本機端開發完)>要重新部署(不用初始化)>git add .>git commit -m "note">git push heroku master
 #heroku網址:https://bestplace1130liff.herokuapp.com/ 
+#看log:heroku logs --tail
