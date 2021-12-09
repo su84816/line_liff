@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Doc</title>
+</head>
+<body>
+        <p>userID: <span id="userId"></span></p>
+        <p>Name:<span id="displayName"></span></p>
+        <p>PicURL:<span id="pictureURL"></span></p>
+        <p>status:<span id="statusMessage"></span></p>
+</body>
+    <script charset="utf-8" src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+    <script>
+        liff.init(
+          data => {
+            liff.getProfile()
+            .then(profile => {
+                //拿取profile
+                document.getElementById("userId").innerHTML = profile.userId
+                document.getElementById("displayName").innerHTML = profile.displayName
+                document.getElementById("pictureURL").innerHTML = profile.pictureUrl
+                document.getElementById("statusMessage").innerHTML = profile.statusMessage
+              })
+        })
+    </script>
+</html>
