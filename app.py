@@ -10,10 +10,12 @@ def home():
 @app.route('/input')#處理的網站路徑
 #定義如何處理
 def input():
-    userInfo = {  
-        'id': 'TODO:user_lineID'
-        } 
-    return render_template('user_input.html',userInfo=userInfo)
+    return render_template('user_input.html')
+
+@app.route('/info')
+def info():
+    return render_template('user_info.html')
+
     
 @app.route('/page/app')
 def pageAppInfo():
