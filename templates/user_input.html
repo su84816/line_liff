@@ -13,18 +13,10 @@
         </style>
 </head>
 <body>
-        
-        <h1>Best Place Liff form</h1>
-        {% if appInfo != undefined %}
-        <p>id : {{userInfo.id}}</p>
-        {% endif %}
-        {% if appInfo != undefined %}
-        <p>id : Unknow </p>
-        {% endif %}
         <p>userID: <span id="userId"></span></p>
-        <p>Name<span id="displayName"></span></p>
-        <p>PicURL<span id="pictureURL"></span></p>
-        <p>status<span id="statusMessage"></span></p>
+        <p>Name:<span id="displayName"></span></p>
+        <p>PicURL:<span id="pictureURL"></span></p>
+        <p>status:<span id="statusMessage"></span></p>
         <div id="checkbox">
         <label><input type="checkbox" id="choice1" value="台北市" checked="checked" /><span class="round button">台北市</span></label>
         <br />
@@ -51,14 +43,16 @@
     <script charset="utf-8" src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
     <script>
         liff.init(
-                data => {
-                    liff.getProfile().then(profile =>{
-                        //拿取profile
-                        document.getElementById("userId").innerHTML = profile.userId
-                        document.getElementById("displayName").innerHTML = profile.displayName
-                        document.getElementById("pictureURL").innerHTML = profile.pictureUrl
-                        document.getElementById("statusMessage").innerHTML = profile.statusMessage
-                    })});
+          data => {
+            liff.getProfile().then(profile => {
+                //拿取profile
+                document.getElementById("userId").innerHTML = profile.userId
+                document.getElementById("displayName").innerHTML = profile.displayName
+                document.getElementById("pictureURL").innerHTML = profile.pictureUrl
+                document.getElementById("statusMessage").innerHTML = profile.statusMessage
+              })
+        });
+
        function submit(){
             const string = '';
             for (var i=1;i<2;i++){
@@ -69,7 +63,7 @@
 
             // sendMessages call
             liff.init({
-                　liffId: 'yourliffid'
+                　liffId: '1656675798-v2b2w9kn'
                 }) .then(() => {
                     //window.alert('初始化成功');
                     liff.sendMessages([{
