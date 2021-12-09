@@ -14,10 +14,35 @@
 </head>
 <body>
         
-        <h1>My Website Text</h1>
+        <h1>Best Place Liff form</h1>
+        {% if appInfo != undefined %}
+        <p>id : {{userInfo.id}}</p>
+        {% endif %}
+        {% if appInfo != undefined %}
+        <p>id : Unknow </p>
+        {% endif %}
+        <p>userID: <span id="userId"></span></p>
+        <p>Name<span id="displayName"></span></p>
+        <p>PicURL<span id="pictureURL"></span></p>
+        <p>status<span id="statusMessage"></span></p>
         <div id="checkbox">
         <label><input type="checkbox" id="choice1" value="台北市" checked="checked" /><span class="round button">台北市</span></label>
-        <label><input type="checkbox" id="choice2" value="新北市" /><span class="round button">新北市</span></label>
+        <br />
+        <select name="行政區">
+                <option value="" disabled>請選擇您想查詢的行政區</option>
+                <option value="Zhongzheng" selected>中正區</option>
+                <option value="Datong">大同區</option>
+                <option value="Zhongshan">中山區</option>
+                <option value="Songshan">松山區</option>
+                <option value="Daan">大安區</option>
+                <option value="Wanhua">萬華區</option>
+                <option value="Xinyi">信義區</option>
+                <option value="Shilin">士林區</option>
+                <option value="Beitou">北投區</option>
+                <option value="Neihu">內湖區</option>
+                <option value="Nangang">南港區</option>
+                <option value="Wenshan">文山區</option>
+        </select>
         </div>
         <br />
         <a class="button" id="submit-btn" onclick="submit()">送出</a>
@@ -35,15 +60,25 @@
             }
 
             // sendMessages call
-            liff.init({
-                　liffId: 'yourliffid'
+            liff.init(
+                data => {
+                    liff.getProfile().then(profile =>{
+                        //拿取profile
+                        document.getElementById("userId").innerHTML = profile.userId
+                        document.getElementById("displayName").innerHTML = profile.displayName
+                        document.getElementById("pictureUrl").innerHTML = profile.pictureUrl
+                        document.getElementById("statusMessage").innerHTML = profile.statusMessage
+                    })},
+                {
+                　liffId: '1656675798-v2b2w9kn'
                 }) .then(() => {
                     //window.alert('初始化成功');
                     liff.sendMessages([{
                             'type': 'text',
                             'text': '你選了：' + string
                         }]);
-                }).catch((err) => {
+                })
+                   .catch((err) => {
                 //　window.alert('初始化失敗')
                 });
 
