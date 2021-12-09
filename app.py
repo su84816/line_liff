@@ -3,19 +3,12 @@ app = Flask(__name__) #代表目前執行的模組
 
 @app.route("/") #函式的裝飾:以函示為基礎,提供附加功能
 def home():
-    return "Hello Flask2"
+    return "home page"
 
-@app.route("/test") #代表處理的網站路徑/test
-def test(): #定義如何處理
-    return "testing"
-
-@app.route('/input')
-def input():
+@app.route('/input')#處理的網站路徑
+#定義如何處理
+def input(): 
     return render_template('user_input.html')
-
-@app.route('/page/text')
-def pageText():
-    return render_template('page.html', text="Python Flask !"
     
 @app.route('/page/app')
 def pageAppInfo():
