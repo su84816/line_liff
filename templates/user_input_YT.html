@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Home</title>
+        <style type='text/css'>
+        #checkbox input[type="checkbox"] {display: none; }
+        #checkbox input:checked + .button {background: #5e7380; color: #fff;}
+        #checkbox .button {display: inline-block; margin: 0 5px 10px 0; padding: 5px 10px; background: #f7f7f7; color: #333; cursor: pointer; }
+        #checkbox .button:hover {background: #bbb; color: #fff; }
+        #checkbox .round {border-radius: 5px; }
+        </style>
+</head>
+<body>
+        
+        <h1>My Website Text</h1>
+        <div id="checkbox">
+        <label><input type="checkbox" id="choice1" value="台北市" checked="checked" /><span class="round button">台北市</span></label>
+        <label><input type="checkbox" id="choice2" value="新北市" /><span class="round button">新北市</span></label>
+        </div>
+        <br />
+        <a class="button" id="submit-btn" onclick="submit()">送出</a>
+</body>
+
+    <script charset="utf-8" src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+    <script>
+
+       function submit(){
+            const string = '';
+            for (var i=1;i<2;i++){
+                    if (document.getElementById("choice"+i).checked){
+                            string = string + document.getElementById("choice" + i).value
+                    }
+            }
+
+            // sendMessages call
+            liff.init({
+                　liffId: 'yourliffid'
+                }) .then(() => {
+                    //window.alert('初始化成功');
+                    liff.sendMessages([{
+                            'type': 'text',
+                            'text': '你選了：' + string
+                        }]);
+                }).catch((err) => {
+                //　window.alert('初始化失敗')
+                });
+
+            liff.closeWindow();
+
+        }
+
+    </script>
+</html>

@@ -12,40 +12,44 @@ def home():
 def input():
     return render_template('user_input.html')
 
+@app.route('/input_1')#處理的網站路徑
+#定義如何處理
+def input_1():
+    return render_template('user_input_YT.html')    
+
 @app.route('/info')
 def info():
     return render_template('user_info.html')
 
     
-@app.route('/page/app')
-def pageAppInfo():
-    appInfo = {  # dict
-        'id': 5,
-        'name': 'Python - Flask',
-        'version': '1.0.1',
-        'author': 'Enoxs',
-        'remark': 'Python - Web Framework'
-    }
-    return render_template('page.html', appInfo=appInfo)
+# @app.route('/page/app')
+# def pageAppInfo():
+#     appInfo = {  # dict
+#         'id': 5,
+#         'name': 'Python - Flask',
+#         'version': '1.0.1',
+#         'author': 'Enoxs',
+#         'remark': 'Python - Web Framework'
+#     }
+#     return render_template('page.html', appInfo=appInfo)
+# # 這邊是寫靜態網頁的資料交換,Liff是否取代了?
+# @app.route('/form')
+# def formPage():
+#     return render_template('Form.html')
 
-# 這邊是寫靜態網頁的資料交換,Liff是否取代了?
-@app.route('/form')
-def formPage():
-    return render_template('Form.html')
-
-@app.route('/submit', methods=['POST', 'GET'])
-def submit():
-    if request.method == 'POST':
-        user = request.form['user']
-        print("post : user => ", user)
-        return redirect(url_for('success', name=user, action="post"))
-    else:
-        user = request.args.get('user')
-        print("get : user => ", user)
-        return redirect(url_for('success', name=user, action="get"))
-@app.route('/success/<action>/<name>')
-def success(name, action):
-    return '{} : Welcome {} ~ !!!'.format(action, name)
+# @app.route('/submit', methods=['POST', 'GET'])
+# def submit():
+#     if request.method == 'POST':
+#         user = request.form['user']
+#         print("post : user => ", user)
+#         return redirect(url_for('success', name=user, action="post"))
+#     else:
+#         user = request.args.get('user')
+#         print("get : user => ", user)
+#         return redirect(url_for('success', name=user, action="get"))
+# @app.route('/success/<action>/<name>')
+# def success(name, action):
+#     return '{} : Welcome {} ~ !!!'.format(action, name)
 
 if __name__=="__main__": #如果以主程式執行
     app.run() #啟動伺服器
