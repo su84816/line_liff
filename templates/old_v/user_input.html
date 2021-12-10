@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Home</title>
+        <style type='text/css'>
+        #checkbox input[type="checkbox"] {display: none; }
+        #checkbox input:checked + .button {background: #5e7380; color: #fff;}
+        #checkbox .button {display: inline-block; margin: 0 5px 10px 0; padding: 5px 10px; background: #f7f7f7; color: #333; cursor: pointer; }
+        #checkbox .button:hover {background: #bbb; color: #fff; }
+        #checkbox .round {border-radius: 5px; }
+        </style>
+</head>
+<body>
+        <div id="userInfo">
+        <p>userID: <span id="userId"></span></p>
+        <p>Name:<span id="displayName"></span></p>
+        <p>PicURL:<span id="pictureURL"></span></p>
+        <p>status:<span id="statusMessage"></span></p>
+        </div>
+
+        <div id="checkbox">
+        <p>您的理想居住城市:(目前僅開放台北市)</p>
+        <label><input type="checkbox" id="choice1" value="台北市" checked="checked" /><span class="round button">台北市</span></label>
+        </div>
+        <br />
+
+        <div id="Area">
+        <p>選擇您想查詢的行政區:</p>
+            <select name="行政區">
+                <option value="" disabled>行政區</option>
+                <option value="Zhongzheng" selected>中正區</option>
+                <option value="Datong">大同區</option>
+                <option value="Zhongshan">中山區</option>
+                <option value="Songshan">松山區</option>
+                <option value="Daan">大安區</option>
+                <option value="Wanhua">萬華區</option>
+                <option value="Xinyi">信義區</option>
+                <option value="Shilin">士林區</option>
+                <option value="Beitou">北投區</option>
+                <option value="Neihu">內湖區</option>
+                <option value="Nangang">南港區</option>
+                <option value="Wenshan">文山區</option>
+            </select>
+        </div>
+        <br />
+
+        <div id="group">
+        <p>選擇您的身份族群:</p>
+        <form>
+        <input type="radio" id="TA1" name="group" value="TA1">
+        <label for="TA1">上班族</label><br>
+        <input type="radio" id="TA2" name="group" value="TA2">
+        <label for="TA2">小家庭</label><br>
+        <input type="radio" id="TA3" name="group" value="TA3">
+        <label for="TA3">銀髮族</label>
+        </form>
+        </div>
+        <br />
+
+        <a class="button" id="submit-btn" onclick="submit()">送出</a>
+</body>
+
+    <script charset="utf-8" src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+    <script>
+        liff.init(
+          data => {
+            liff.getProfile()
+            .then(profile => {
+                //拿取profile
+                document.getElementById("userId").innerHTML = profile.userId
+                document.getElementById("displayName").innerHTML = profile.displayName
+                document.getElementById("pictureURL").innerHTML = profile.pictureUrl
+                document.getElementById("statusMessage").innerHTML = profile.statusMessage
+              })
+        });
+
+       function submit(){
+            const string = '';
+            for (var i=1;i<2;i++){
+                    if (document.getElementById("choice"+i).checked){
+                            string = string + document.getElementById("choice" + i).value
+                    }
+            }
+
+            // sendMessages call
+            liff.init({
+                　liffId: '1656675798-v2b2w9kn'
+                }) .then(() => {
+                    //window.alert('初始化成功');
+                    liff.sendMessages([{
+                            'type': 'text',
+                            'text': '你選了：' + string
+                        }]);
+                }).catch((err) => {
+                //　window.alert('初始化失敗')
+                });
+
+            liff.closeWindow();
+
+        }
+
+    </script>
+</html>

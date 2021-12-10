@@ -1,5 +1,0 @@
-pip install line-bot-sdk
-pip install flask
-pip install requests
-pip install flask_cors
-pip install liffpy
